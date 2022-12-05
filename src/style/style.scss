@@ -1,14 +1,6 @@
 @use 'utils/a11y'; // Om det inte funkar, byt @use mot @import
-@use 'vendor/reset';
-
-* {
-  font-family: 'VT323', monospace;
-}
-
-body {
-  background-color: black;
-  color: #fff;
-}
+@use 'base';
+@use 'components';
 
 .hidden {
   display: none;
@@ -26,29 +18,5 @@ body {
 .information {
   &__score {
     display: flex;
-  }
-}
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(5, 64px);
-  grid-template-rows: repeat(4, 64px);
-  grid-auto-flow: row;
-
-  &__tile {
-    position: relative;
-    display: grid;
-    place-items: center;
-    font-size: 1.2rem;
-
-    .playerimg {
-      position: absolute;
-      z-index: 10;
-    }
-
-    .dangerimg {
-      position: absolute;
-      z-index: 5;
-    }
   }
 }

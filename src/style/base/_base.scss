@@ -1,0 +1,54 @@
+@use '../base/functions' as fn;
+
+body {
+  background-image: url('../../../public/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  border: unset;
+  background: unset;
+}
+
+.button {
+  background-color: fn.getcolor(grey, '400');
+  border-radius: 0.25rem;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    box-shadow: #0000003d 0 3px 8px;
+  }
+}
+
+.main {
+  width: 50vw;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__information {
+    display: flex;
+  }
+}
