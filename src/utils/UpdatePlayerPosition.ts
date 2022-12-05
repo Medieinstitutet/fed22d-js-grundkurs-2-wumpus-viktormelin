@@ -13,6 +13,8 @@ import { boardElement, gameBoard, keyboardKeys, leaderboardElement, startGameBut
 import Global from '@/stores/variables';
 import UpdateSteps from '@/utils/UpdateSteps';
 
+import CheckSurroundings from './CheckSurroundings';
+
 const UpdatePlayerPosition = (direction: string) => {
   // Find current tile image and set it to a empty image to not have error show (probably not very good for a11y...)
   const oldPositionElement = boardElement.querySelector(
@@ -37,10 +39,8 @@ const UpdatePlayerPosition = (direction: string) => {
     tileImageElement.src = floorImage1;
 
     if (gameBoard[Global.currentPosition].danger === 'bat') {
-      console.log('Adding bat');
       dangerImageElement.src = batImage;
     } else if (gameBoard[Global.currentPosition].danger === 'wumpus') {
-      console.log('Adding wumpus');
       dangerImageElement.src = wumpusImage;
     }
   }
@@ -63,6 +63,7 @@ const UpdatePlayerPosition = (direction: string) => {
       break;
   }
 
+  CheckSurroundings();
   UpdateSteps();
 };
 
