@@ -2,6 +2,7 @@ import arrowImage from '@/assets/arrow-icon.png';
 import batImage from '@/assets/bat.png';
 import floorImage1 from '@/assets/floor.png';
 import floorImage2 from '@/assets/floor_1.png';
+import holeImage from '@/assets/hole.png';
 import playerDownImage from '@/assets/player_facing_to_down.png';
 import playerLeftImage from '@/assets/player_facing_to_left.png';
 import playerRightImage from '@/assets/player_facing_to_right.png';
@@ -27,24 +28,34 @@ const UpdatePlayerPosition = (direction: string) => {
     `[data-tile="${gameBoard[Global.currentPosition].id}"]`
   ) as HTMLElement;
   const tileImageElement = currentPositionElement.querySelector('.tileimg') as HTMLImageElement;
+  const dangerImageElement = currentPositionElement.querySelector('.dangerimg') as HTMLImageElement;
   const playerImageElement = currentPositionElement.querySelector('.playerimg') as HTMLImageElement;
 
-  tileImageElement.src = floorImage1;
+  if (gameBoard[Global.currentPosition].danger === 'hole') {
+    tileImageElement.src = holeImage;
+  } else {
+    tileImageElement.src = floorImage1;
+
+    if (gameBoard[Global.currentPosition].danger === 'bat') {
+      console.log('Adding bat');
+      dangerImageElement.src = batImage;
+    } else if (gameBoard[Global.currentPosition].danger === 'wumpus') {
+      console.log('Adding wumpus');
+      dangerImageElement.src = wumpusImage;
+    }
+  }
 
   switch (direction) {
     case 'up':
       playerImageElement.src = playerUpImage;
       break;
     case 'down':
-      tileImageElement.src = floorImage1;
       playerImageElement.src = playerDownImage;
       break;
     case 'left':
-      tileImageElement.src = floorImage1;
       playerImageElement.src = playerLeftImage;
       break;
     case 'right':
-      tileImageElement.src = floorImage1;
       playerImageElement.src = playerRightImage;
       break;
 
