@@ -3,8 +3,8 @@ import Global from '@/stores/variables';
 
 const GenerateGameBoard = () => {
   const gridSize = [4, 5];
-  const percentageHoles = 0.2;
-  const percentageBats = 0.3;
+  const percentageHoles = 0.1;
+  const percentageBats = 0.2;
 
   let holes = 0;
   let bats = 0;
