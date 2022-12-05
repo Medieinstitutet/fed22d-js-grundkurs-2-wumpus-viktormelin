@@ -26,14 +26,14 @@ const updateSteps = () => {
 
 const updatePlayerPosition = (direction: string) => {
   // Find current tile image and set it to a empty image to not have error show (probably not very good for a11y...)
-  const currentPositionImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
+  const currentPositionImageElement = currentPositionElement.querySelector('.playerimg') as HTMLImageElement;
   currentPositionImageElement.src =
     "data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E";
 
   currentPositionElement = boardElement.querySelector(`[data-tile="${currentPosition.id}"]`) as HTMLElement;
 
   const tileImageElement = currentPositionElement.querySelector('.tileImg') as HTMLImageElement;
-  const playerImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
+  const playerImageElement = currentPositionElement.querySelector('.playerimg') as HTMLImageElement;
 
   updateSteps();
 
@@ -184,7 +184,7 @@ const initGameBoard = () => {
           <img src="${floorImage2}" class="tileImg" width="64" height="64" />
           <img
             src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
-            class="playerImg"
+            class="playerimg"
             width="32"
             height="32"
           />
@@ -195,7 +195,7 @@ const initGameBoard = () => {
     currentPositionElement = boardElement.querySelector(`[data-tile="${currentPosition.id}"]`) as HTMLElement;
 
     const tileImageElement = currentPositionElement.querySelector('.tileImg') as HTMLImageElement;
-    const playerImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
+    const playerImageElement = currentPositionElement.querySelector('.playerimg') as HTMLImageElement;
     const stepsTakenElement = leaderboardElement.querySelector('ul [data-id="0"]') as HTMLElement;
 
     tileImageElement.src = floorImage1;
