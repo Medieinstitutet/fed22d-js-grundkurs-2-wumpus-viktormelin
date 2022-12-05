@@ -3,3 +3,10 @@ export interface Position {
   id: string;
   danger: string | null;
 }
+
+export interface GlobalVariables {
+  isGameStarted: boolean;
+  currentPosition: number;
+  previousPosition: number;
+  stepsTaken: number;
+}
