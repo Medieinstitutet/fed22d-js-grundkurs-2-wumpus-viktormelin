@@ -10,3 +10,7 @@ export interface GlobalVariables {
   previousPosition: number;
   stepsTaken: number;
 }
+
+export interface Locales {
+  [key: string]: string;
+}
