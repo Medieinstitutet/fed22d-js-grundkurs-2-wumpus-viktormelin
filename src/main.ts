@@ -7,16 +7,25 @@ import playerUpImage from '@/assets/player_facing_to_up.png';
 import '@/style/style.scss';
 import { Position } from '@/typings/types';
 
-const boardElement = document.querySelector('#board') as HTMLElement;
-const startGameButton = document.querySelector('#startGameButton');
-const keyboardKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+const boardElement = document.querySelector('.board') as HTMLElement;
+const leaderboardElement = document.querySelector('.leaderboard') as HTMLElement;
+const startGameButton = document.querySelector('#startGameButton') as HTMLButtonElement;
+const keyboardKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'];
 
 const gameBoard: Position[] = [];
+let isGameStarted = false;
 let currentPosition: Position;
 let currentPositionElement: HTMLElement;
+let stepsTaken = 0;
+
+const updateSteps = () => {
+  const stepsTakenElement = leaderboardElement.querySelector('ul [data-id="0"] span') as HTMLElement;
+  stepsTaken += 1;
+  stepsTakenElement.innerHTML = String(stepsTaken);
+};
 
 const updatePlayerPosition = (direction: string) => {
-  // Find current tile image and set it to a empty image to not have error show
+  // Find current tile image and set it to a empty image to not have error show (probably not very good for a11y...)
   const currentPositionImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
   currentPositionImageElement.src =
     "data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E";
@@ -25,6 +34,8 @@ const updatePlayerPosition = (direction: string) => {
 
   const tileImageElement = currentPositionElement.querySelector('.tileImg') as HTMLImageElement;
   const playerImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
+
+  updateSteps();
 
   switch (direction) {
     case 'up':
@@ -50,7 +61,7 @@ const updatePlayerPosition = (direction: string) => {
 };
 
 const handleMovement = (e: KeyboardEvent) => {
-  if (keyboardKeys.includes(e.key)) {
+  if (keyboardKeys.includes(e.key) && isGameStarted) {
     switch (e.key) {
       case 'ArrowLeft':
         if (currentPosition.coord[1] === 0) {
@@ -102,40 +113,98 @@ const handleMovement = (e: KeyboardEvent) => {
   }
 };
 
-const initGameBoard = () => {
-  boardElement.innerHTML = '';
-  for (let i = 0; i < 4; i += 1) {
-    for (let j = 0; j < 5; j += 1) {
+const generateGameBoard = () => {
+  const gridSize = [4, 5];
+  const percentageHoles = 0.2;
+  const percentageBats = 0.3;
+
+  let holes = 0;
+  let bats = 0;
+  let wumpus = false;
+
+  for (let i = 0; i < gridSize[0]; i += 1) {
+    for (let j = 0; j < gridSize[1]; j += 1) {
       const coord = [i, j];
       const id = coord.toString().replace(',', '');
-      gameBoard.push({ coord, id });
+      const danger = null;
+      gameBoard.push({ coord, id, danger });
     }
   }
 
-  for (const tile of gameBoard) {
-    boardElement.innerHTML +=
-      /* HTML */
-      `<div data-tile="${tile.id}" class="board__tile">
-        <img src="${floorImage2}" class="tileImg" width="64" height="64" />
-        <img
-          src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.org/2000/svg'%3E%3C/svg%3E"
-          class="playerImg"
-          width="32"
-          height="32"
-        />
-      </div>`;
+  while (!wumpus) {
+    const index = Math.floor(Math.random() * gameBoard.length);
+    const wumpusTile = gameBoard[index];
+    if (wumpusTile !== currentPosition) {
+      wumpus = true;
+      gameBoard[index].danger = 'wumpus';
+      break;
+    }
   }
 
-  currentPosition = gameBoard[Math.floor(Math.random() * gameBoard.length)];
-  currentPositionElement = boardElement.querySelector(`[data-tile="${currentPosition.id}"]`) as HTMLElement;
+  while (holes < gridSize[0] * gridSize[1] * percentageHoles) {
+    const index = Math.floor(Math.random() * gameBoard.length);
+    const holeTile = gameBoard[index];
+    if (holeTile !== currentPosition && holeTile.danger === null) {
+      holes += 1;
+      gameBoard[index].danger = 'hole';
 
-  const tileImageElement = currentPositionElement.querySelector('.tileImg') as HTMLImageElement;
-  const playerImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
+      if (holes >= (gridSize[0] * gridSize[1]) / percentageHoles) {
+        break;
+      }
+    }
+  }
 
-  tileImageElement.src = floorImage1;
-  playerImageElement.src = playerDownImage;
+  while (bats < gridSize[0] * gridSize[1] * percentageBats) {
+    const index = Math.floor(Math.random() * gameBoard.length);
+    const holeTile = gameBoard[index];
+    if (holeTile !== currentPosition && holeTile.danger === null) {
+      bats += 1;
+      gameBoard[index].danger = 'bat';
 
-  document.addEventListener('keyup', handleMovement);
+      if (bats >= (gridSize[0] * gridSize[1]) / percentageHoles) {
+        break;
+      }
+    }
+  }
 };
 
-startGameButton?.addEventListener('click', initGameBoard);
+const initGameBoard = () => {
+  if (isGameStarted) {
+    console.log('Restart Game...');
+  } else {
+    isGameStarted = true;
+    boardElement.innerHTML = '';
+
+    generateGameBoard();
+
+    for (const tile of gameBoard) {
+      boardElement.innerHTML +=
+        /* HTML */
+        `<div data-tile="${tile.id}" class="board__tile">
+          <img src="${floorImage2}" class="tileImg" width="64" height="64" />
+          <img
+            src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
+            class="playerImg"
+            width="32"
+            height="32"
+          />
+        </div>`;
+    }
+
+    currentPosition = gameBoard[Math.floor(Math.random() * gameBoard.length)];
+    currentPositionElement = boardElement.querySelector(`[data-tile="${currentPosition.id}"]`) as HTMLElement;
+
+    const tileImageElement = currentPositionElement.querySelector('.tileImg') as HTMLImageElement;
+    const playerImageElement = currentPositionElement.querySelector('.playerImg') as HTMLImageElement;
+    const stepsTakenElement = leaderboardElement.querySelector('ul [data-id="0"]') as HTMLElement;
+
+    tileImageElement.src = floorImage1;
+    playerImageElement.src = playerDownImage;
+    stepsTakenElement.classList.toggle('hidden');
+    startGameButton.innerHTML = 'Restart Game';
+
+    document.addEventListener('keyup', handleMovement);
+  }
+};
+
+startGameButton.addEventListener('click', initGameBoard);
