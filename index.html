@@ -1,24 +1,34 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- TODO: glöm ej att byta språk här -->
+<html lang="en">
+
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/ico" href="/js-template/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekt</title>
-    <script type="module" crossorigin src="/js-template/assets/index.288365a0.js"></script>
-    <link rel="stylesheet" href="/js-template/assets/index.09951560.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+    <title>Hunt the Wumpus, sort of...</title>
+    <script type="module" crossorigin src="./assets/index.8e954ad1.js"></script>
+    <link rel="stylesheet" href="./assets/index.5051a4b0.css">
   </head>
+
   <body>
     <main>
-      <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
-      <!-- TODO: skriv din kod här, innan script-taggen -->
+      <h1>Hunt the Wumpus</h1>
+      <button id="startGameButton">Start the Game</button>
+      <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul class="leaderboard__entries">
+          <li class="leaderboard__entries_item hidden" data-id="0">Current Steps: <span></span></li>
+          <li class="leaderboard__entries_item" data-id="1">1. <span>12345</span></li>
+          <li class="leaderboard__entries_item" data-id="2">2. <span>12345</span></li>
+          <li class="leaderboard__entries_item" data-id="3">3. <span>12345</span></li>
+        </ul>
+      </div>
+      <div class="board"></div>
     </main>
-
-    <!-- TODO
-    - Validera HTML (kopiera den renderade HTML-koden): https://validator.w3.org/#validate_by_input
-    - Kontrollera tillgänglighet: https://www.a11yproject.com/checklist/ & Chrome Lighthouse/Firefox Accessibility Tools
-    - Validera genererade CSS: https://jigsaw.w3.org/css-validator/#validate_by_input
-    -->
     
   </body>
+
 </html>
