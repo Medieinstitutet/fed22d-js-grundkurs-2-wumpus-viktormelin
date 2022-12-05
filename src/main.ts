@@ -1,14 +1,8 @@
-import arrowImage from '@/assets/arrow-icon.png';
-import batImage from '@/assets/bat.png';
 import floorImage1 from '@/assets/floor.png';
 import floorImage2 from '@/assets/floor_1.png';
 import playerDownImage from '@/assets/player_facing_to_down.png';
-import playerLeftImage from '@/assets/player_facing_to_left.png';
-import playerRightImage from '@/assets/player_facing_to_right.png';
-import playerUpImage from '@/assets/player_facing_to_up.png';
 import coinImage from '@/assets/score-icon.png';
-import wumpusImage from '@/assets/wumpus.png';
-import { boardElement, gameBoard, informationElement, leaderboardElement, startGameButton } from '@/stores/store';
+import { boardElement, gameBoard, informationElement, startGameButton } from '@/stores/store';
 import Global from '@/stores/variables';
 import '@/style/style.scss';
 import HandleMovement from '@/utils/HandleMovement';
@@ -71,10 +65,10 @@ const initGameBoard = () => {
     playerImageElement.src = playerDownImage;
 
     informationElement.classList.toggle('hidden');
-    informationElement.querySelector('.information__score')!.innerHTML += `<p>Current Score: ${Global.stepsTaken}</p>`;
-    informationElement.querySelector(
-      '.information__score'
-    )!.innerHTML += `<img src="${coinImage}" width="16" heigh="16" />`;
+
+    const scoreElement = informationElement.querySelector('.information__score') as HTMLElement;
+    scoreElement.innerHTML += `<p>Current Score: ${Global.stepsTaken}</p>`;
+    scoreElement.innerHTML += `<img src="${coinImage}" width="16" height="16" />`;
 
     startGameButton.innerHTML = 'Restart Game';
     document.addEventListener('keyup', HandleMovement);
