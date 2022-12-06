@@ -63,7 +63,7 @@ const updatePlayerPosition = (direction: string) => {
   }
 
   checkSurroundings();
-  updateScore(scores.bat);
+  updateScore(scores.step);
 };
 
 export default updatePlayerPosition;
