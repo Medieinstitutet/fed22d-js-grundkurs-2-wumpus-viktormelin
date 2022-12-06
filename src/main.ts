@@ -54,10 +54,10 @@ const initGameBoard = () => {
     informationElement.classList.toggle('hidden');
 
     const scoreElement = informationElement.querySelector('.information__score') as HTMLElement;
-    scoreElement.innerHTML += `<p>Current Score: ${Global.score}</p>`;
+    scoreElement.innerHTML += `<p>Poäng: ${Global.score}</p>`;
     scoreElement.innerHTML += `<img src="${coinImage}" width="16" height="16" />`;
 
-    startGameButton.innerHTML = 'Restart Game';
+    startGameButton.innerHTML = 'Starta om Spelet';
     document.addEventListener('keyup', HandleMovement);
   }
 };
