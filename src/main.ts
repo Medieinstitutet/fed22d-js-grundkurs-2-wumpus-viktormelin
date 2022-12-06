@@ -7,7 +7,7 @@ import Global from '@/stores/variables';
 import HandleMovement from '@/utils/handleMovement';
 import GenerateGameBoard from '@/utils/generateGameBoard';
 import '@/style/style.scss';
-import CheckSurroundings from './utils/checkSurroundings';
+import CheckSurroundings from '@/utils/checkSurroundings';
 
 const initGameBoard = () => {
   if (Global.isGameStarted) {

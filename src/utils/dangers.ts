@@ -2,9 +2,9 @@ import floorImage1 from '@/assets/floor.png';
 import playerDownImage from '@/assets/player_facing_to_down.png';
 import { boardElement, gameBoard, scores } from '@/stores/store';
 import Global from '@/stores/variables';
-import CheckSurroundings from './checkSurroundings';
-import endGame from './endGame';
-import updateScore from './updateScore';
+import CheckSurroundings from '@/utils/checkSurroundings';
+import endGame from '@/utils/endGame';
+import updateScore from '@/utils/updateScore';
 
 const steppedInHole = () => {
   updateScore(scores.hole);
