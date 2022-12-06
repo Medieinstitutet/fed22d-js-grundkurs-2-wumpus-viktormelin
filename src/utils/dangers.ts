@@ -3,10 +3,12 @@ import playerDownImage from '@/assets/player_facing_to_down.png';
 import { boardElement, gameBoard, scores } from '@/stores/store';
 import Global from '@/stores/variables';
 import CheckSurroundings from './checkSurroundings';
+import endGame from './endGame';
 import updateScore from './updateScore';
 
 const steppedInHole = () => {
-  // EndGame('death');
+  updateScore(scores.hole);
+  endGame('hole');
 };
 
 const steppedOnBat = () => {
@@ -47,7 +49,8 @@ const steppedOnBat = () => {
 };
 
 const steppedOnWumpus = () => {
-  console.log('Stepped on Wumpus');
+  updateScore(scores.wumpus);
+  endGame('wumpus');
 };
 
 export default { steppedInHole, steppedOnBat, steppedOnWumpus };
