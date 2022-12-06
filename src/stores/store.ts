@@ -1,4 +1,4 @@
-import { GlobalVariables, Locales, Position } from '@/typings/types';
+import { Locales, Position, Scores } from '@/typings/types';
 
 export const boardElement = document.querySelector('.board') as HTMLElement;
 export const leaderboardElement = document.querySelector('.leaderboard') as HTMLElement;
@@ -10,4 +10,11 @@ export const locales: Locales = {
   bat: 'Du hör nånting fladdra',
   hole: 'Du känner ett vinddrag',
   wumpus: 'Du känner en konstig lukt',
+};
+export const scores: Scores = {
+  step: 1,
+  bat: 2,
+  arrow: 3,
+  wumpus: 10,
+  hole: 5,
 };

@@ -8,9 +8,17 @@ export interface GlobalVariables {
   isGameStarted: boolean;
   currentPosition: number;
   previousPosition: number;
-  stepsTaken: number;
+  score: number;
 }
 
 export interface Locales {
   [key: string]: string;
+}
+
+export interface Scores {
+  step: number;
+  bat: number;
+  arrow: number;
+  wumpus: number;
+  hole: number;
 }
