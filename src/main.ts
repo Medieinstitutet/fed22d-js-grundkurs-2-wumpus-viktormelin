@@ -4,22 +4,10 @@ import playerDownImage from '@/assets/player_facing_to_down.png';
 import coinImage from '@/assets/score-icon.png';
 import { boardElement, gameBoard, informationElement, startGameButton } from '@/stores/store';
 import Global from '@/stores/variables';
+import HandleMovement from '@/utils/handleMovement';
+import GenerateGameBoard from '@/utils/generateGameBoard';
 import '@/style/style.scss';
-import HandleMovement from '@/utils/HandleMovement';
-
-import GenerateGameBoard from './utils/GenerateGameBoard';
-
-// const boardElement = document.querySelector('.board') as HTMLElement;
-// const leaderboardElement = document.querySelector('.leaderboard') as HTMLElement;
-// const startGameButton = document.querySelector('#startGameButton') as HTMLButtonElement;
-// const keyboardKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'];
-
-// const gameBoard: Position[] = [];
-// let isGameStarted = false;
-// let currentPosition: number;
-// let previousPosition: number;
-// let currentPositionElement: HTMLElement;
-// let stepsTaken = 0;
+import CheckSurroundings from './utils/checkSurroundings';
 
 const initGameBoard = () => {
   if (Global.isGameStarted) {
@@ -29,6 +17,7 @@ const initGameBoard = () => {
     Global.currentPosition = Math.floor(Math.random() * gameBoard.length);
 
     GenerateGameBoard();
+    CheckSurroundings();
 
     boardElement.innerHTML = '';
 
@@ -53,8 +42,6 @@ const initGameBoard = () => {
         </div>`;
     }
 
-    // currentPosition = gameBoard[Math.floor(Math.random() * gameBoard.length)];
-
     const currentPositionElement = boardElement.querySelector(
       `[data-tile="${gameBoard[Global.currentPosition].id}"]`
     ) as HTMLElement;
@@ -67,7 +54,7 @@ const initGameBoard = () => {
     informationElement.classList.toggle('hidden');
 
     const scoreElement = informationElement.querySelector('.information__score') as HTMLElement;
-    scoreElement.innerHTML += `<p>Current Score: ${Global.stepsTaken}</p>`;
+    scoreElement.innerHTML += `<p>Current Score: ${Global.score}</p>`;
     scoreElement.innerHTML += `<img src="${coinImage}" width="16" height="16" />`;
 
     startGameButton.innerHTML = 'Restart Game';

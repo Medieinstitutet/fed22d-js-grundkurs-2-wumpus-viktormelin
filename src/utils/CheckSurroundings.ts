@@ -1,19 +1,11 @@
-import {
-  boardElement,
-  gameBoard,
-  informationElement,
-  keyboardKeys,
-  leaderboardElement,
-  locales,
-  startGameButton,
-} from '@/stores/store';
+import { boardElement, gameBoard, informationElement, locales } from '@/stores/store';
 import Global from '@/stores/variables';
 
-const CheckSurroundings = () => {
+const checkSurroundings = () => {
   const helperElement = informationElement.querySelector('.information__helper') as HTMLElement;
   helperElement.innerHTML = '';
 
-  const coord = gameBoard[Global.currentPosition].coord;
+  const { coord } = gameBoard[Global.currentPosition];
   const closestCoords = [];
 
   const closestSCoord = coord[0] + 1 <= 3 ? coord[0] + 1 : 0;
@@ -35,9 +27,9 @@ const CheckSurroundings = () => {
     }
 
     if (item?.danger) {
-      helperElement.innerHTML += `<p>${locales[item?.danger]}</p>`;
+      helperElement.innerHTML += `<p>${locales[item.danger]}</p>`;
     }
   }
 };
 
-export default CheckSurroundings;
+export default checkSurroundings;
