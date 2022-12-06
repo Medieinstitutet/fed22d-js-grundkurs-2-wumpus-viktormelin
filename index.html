@@ -13,14 +13,19 @@
 
   <body>
     <main>
+      <div class="modal hidden">
+        <h2></h2>
+        <p></p>
+        <button class="button">Stäng X</button>
+      </div>
       <div class="main">
         <div class="main__header">
           <h1>Hunt the Wumpus</h1>
-          <button class="button" id="startGameButton">Start the Game</button>
+          <button class="button" id="startGameButton">Starta Spelet</button>
         </div>
         <div class="main__information">
           <div class="leaderboard">
-            <h2>Leaderboard</h2>
+            <h2>Topplista</h2>
             <ul class="leaderboard__entries">
               <li class="leaderboard__entries_item" data-id="1">1. <span>12345</span></li>
               <li class="leaderboard__entries_item" data-id="2">2. <span>12345</span></li>
@@ -28,7 +33,7 @@
             </ul>
           </div>
           <div class="information hidden">
-            <h2>Game Information</h2>
+            <h2>Spel Information</h2>
             <div class="information__score"></div>
             <div class="information__helper"></div>
           </div>
