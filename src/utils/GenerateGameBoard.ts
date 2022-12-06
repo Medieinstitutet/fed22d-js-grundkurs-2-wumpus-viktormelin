@@ -1,7 +1,7 @@
 import { gameBoard } from '@/stores/store';
 import Global from '@/stores/variables';
 
-const GenerateGameBoard = () => {
+const generateGameBoard = () => {
   const gridSize = [4, 5];
   const percentageHoles = 0.1;
   const percentageBats = 0.2;
@@ -56,4 +56,4 @@ const GenerateGameBoard = () => {
   }
 };
 
-export default GenerateGameBoard;
+export default generateGameBoard;
