@@ -1,6 +1,6 @@
-import { boardElement, gameBoard, keyboardKeys, leaderboardElement, startGameButton } from '@/stores/store';
+import { gameBoard, keyboardKeys } from '@/stores/store';
 import Global from '@/stores/variables';
-import UpdatePlayerPosition from '@/utils/UpdatePlayerPosition';
+import updatePlayerPosition from '@/utils/updatePlayerPosition';
 
 const HandleMovement = (e: KeyboardEvent) => {
   if (keyboardKeys.includes(e.key) && Global.isGameStarted) {
@@ -21,7 +21,7 @@ const HandleMovement = (e: KeyboardEvent) => {
         }
 
         // gameBoard[currentPosition].id = gameBoard[currentPosition].coord.toString().replace(',', '');
-        UpdatePlayerPosition('left');
+        updatePlayerPosition('left');
 
         break;
       case 'ArrowRight':
@@ -36,7 +36,7 @@ const HandleMovement = (e: KeyboardEvent) => {
         }
 
         // currentPosition.id = currentPosition.coord.toString().replace(',', '');
-        UpdatePlayerPosition('right');
+        updatePlayerPosition('right');
 
         break;
       case 'ArrowUp':
@@ -51,7 +51,7 @@ const HandleMovement = (e: KeyboardEvent) => {
         }
 
         // currentPosition.id = currentPosition.coord.toString().replace(',', '');
-        UpdatePlayerPosition('up');
+        updatePlayerPosition('up');
 
         break;
       case 'ArrowDown':
@@ -66,7 +66,7 @@ const HandleMovement = (e: KeyboardEvent) => {
         }
 
         // currentPosition.id = currentPosition.coord.toString().replace(',', '');
-        UpdatePlayerPosition('down');
+        updatePlayerPosition('down');
 
         break;
       default:
