@@ -11,7 +11,7 @@ import {
   startGameButton,
 } from '@/stores/store';
 import Global from '@/stores/variables';
-import HandleMovement from '@/utils/handleMovement';
+import handleMovement from '@/utils/handleMovement';
 import GenerateGameBoard from '@/utils/generateGameBoard';
 import '@/style/style.scss';
 import CheckSurroundings from '@/utils/checkSurroundings';
@@ -78,7 +78,7 @@ const initGameBoard = () => {
     scoreElement.innerHTML += `<img src="${coinImage}" width="16" height="16" />`;
 
     startGameButton.innerHTML = 'Avsluta Spelet';
-    document.addEventListener('keyup', HandleMovement);
+    document.addEventListener('keyup', handleMovement);
   }
 };
 
