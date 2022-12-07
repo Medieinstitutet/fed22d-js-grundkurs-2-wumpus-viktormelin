@@ -2,16 +2,36 @@ import floorImage1 from '@/assets/floor.png';
 import floorImage2 from '@/assets/floor_1.png';
 import playerDownImage from '@/assets/player_facing_to_down.png';
 import coinImage from '@/assets/score-icon.png';
-import { boardElement, gameBoard, informationElement, startGameButton } from '@/stores/store';
+import {
+  boardElement,
+  controlsElement,
+  gameBoard,
+  informationElement,
+  showControlsButton,
+  startGameButton,
+} from '@/stores/store';
 import Global from '@/stores/variables';
 import HandleMovement from '@/utils/handleMovement';
 import GenerateGameBoard from '@/utils/generateGameBoard';
 import '@/style/style.scss';
 import CheckSurroundings from '@/utils/checkSurroundings';
+import endGame from './utils/endGame';
+
+let isControlsShowing = false;
+
+const showControlsModal = () => {
+  controlsElement.classList.toggle('hidden');
+  isControlsShowing = !isControlsShowing;
+
+  if (isControlsShowing) {
+    const buttonElement = controlsElement.querySelector('button') as HTMLButtonElement;
+    buttonElement.addEventListener('click', showControlsModal);
+  }
+};
 
 const initGameBoard = () => {
   if (Global.isGameStarted) {
-    console.log('Restart Game...');
+    endGame('restart');
   } else {
     Global.isGameStarted = true;
     Global.currentPosition = Math.floor(Math.random() * gameBoard.length);
@@ -57,9 +77,10 @@ const initGameBoard = () => {
     scoreElement.innerHTML += `<p>Poäng: ${Global.score}</p>`;
     scoreElement.innerHTML += `<img src="${coinImage}" width="16" height="16" />`;
 
-    startGameButton.innerHTML = 'Starta om Spelet';
+    startGameButton.innerHTML = 'Avsluta Spelet';
     document.addEventListener('keyup', HandleMovement);
   }
 };
 
+showControlsButton.addEventListener('click', showControlsModal);
 startGameButton.addEventListener('click', initGameBoard);
