@@ -27,35 +27,30 @@ const resetGame = () => {
 };
 
 const endGame = (type: string) => {
-  modalElement.classList.toggle('hidden');
+  if (type === 'restart') {
+    resetGame();
+  } else {
+    modalElement.classList.toggle('hidden');
 
-  const h1Element = modalElement.querySelector('h2') as HTMLHeadingElement;
-  const pElement = modalElement.querySelector('p') as HTMLParagraphElement;
-  const buttonElement = modalElement.querySelector('button') as HTMLButtonElement;
-  h1Element.innerText = '';
-  pElement.innerText = '';
+    const h1Element = modalElement.querySelector('h2') as HTMLHeadingElement;
+    const pElement = modalElement.querySelector('p') as HTMLParagraphElement;
+    const buttonElement = modalElement.querySelector('button') as HTMLButtonElement;
+    h1Element.innerText = '';
+    pElement.innerText = '';
 
-  switch (type) {
-    case 'hole':
+    if (type === 'hole') {
       h1Element.innerText = 'Du förlorade!';
       pElement.innerText = 'Du ramlade ner i ett hål och förlorade spelet';
       isModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
-      break;
-    case 'wumpus':
+    } else {
       h1Element.innerText = 'Du förlorade!';
       pElement.innerText = 'Du blev uppäten av Wumpus och förlorade spelet';
       isModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
-      break;
-    case 'restart':
-      resetGame();
-      break;
-
-    default:
-      break;
+    }
   }
 };
 
