@@ -4,11 +4,15 @@ export const boardElement = document.querySelector('.board') as HTMLElement;
 
 export const modalElement = document.querySelector('.modal') as HTMLElement;
 
+export const controlsElement = document.querySelector('.controls') as HTMLElement;
+
 export const leaderboardElement = document.querySelector('.leaderboard') as HTMLElement;
 
 export const informationElement = document.querySelector('.information') as HTMLElement;
 
 export const startGameButton = document.querySelector('#startGameButton') as HTMLButtonElement;
+
+export const showControlsButton = document.querySelector('#showControls') as HTMLButtonElement;
 
 export const keyboardKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'];
 
