@@ -22,3 +22,8 @@ export interface Scores {
   wumpus: number;
   hole: number;
 }
+
+export interface LeaderboardItem {
+  name: string;
+  score: number;
+}

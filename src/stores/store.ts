@@ -1,4 +1,4 @@
-import { Locales, Position, Scores } from '@/typings/types';
+import { LeaderboardItem, Locales, Position, Scores } from '@/typings/types';
 
 export const boardElement = document.querySelector('.board') as HTMLElement;
 
@@ -31,3 +31,5 @@ export const scores: Scores = {
   wumpus: 10,
   hole: 5,
 };
+
+export const leaderboard: LeaderboardItem[] = [];
