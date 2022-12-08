@@ -1,5 +1,5 @@
 export default {
-  isDebug: true,
+  isDebug: false,
   isGameStarted: false,
   isArrowMode: false,
   currentPosition: 0,
