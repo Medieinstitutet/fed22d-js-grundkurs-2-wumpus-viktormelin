@@ -12,10 +12,10 @@ import {
 } from '@/stores/store';
 import Global from '@/stores/variables';
 import handleMovement from '@/utils/handleMovement';
-import GenerateGameBoard from '@/utils/generateGameBoard';
+import generateGameBoard from '@/utils/generateGameBoard';
 import '@/style/style.scss';
-import CheckSurroundings from '@/utils/checkSurroundings';
-import endGame from './utils/endGame';
+import checkSurroundings from '@/utils/checkSurroundings';
+import endGame, { refreshLeaderboard } from '@/utils/endGame';
 
 let isControlsShowing = false;
 
@@ -36,8 +36,9 @@ const initGameBoard = () => {
     Global.isGameStarted = true;
     Global.currentPosition = Math.floor(Math.random() * gameBoard.length);
 
-    GenerateGameBoard();
-    CheckSurroundings();
+    refreshLeaderboard();
+    generateGameBoard();
+    checkSurroundings();
 
     boardElement.innerHTML = '';
 
