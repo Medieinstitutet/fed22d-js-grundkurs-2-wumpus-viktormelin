@@ -13,8 +13,17 @@
 
   <body>
     <main>
-      <div class="modal hidden">
-        <h2></h2>
+      <div class="win-dialog modal hidden">
+        <h2>Du vann!</h2>
+        <p id="winDialogScore">Din poäng blev <span></span><img src="" alt="mynt" width="16" height="16" /></p>
+        <label>
+          Skriv ditt namn för topplistan:
+          <input type="text" name="nameinput" id="nameinput" />
+        </label>
+        <button class="button"></button>
+      </div>
+      <div class="loose-dialog modal hidden">
+        <h2>Du förlorade!</h2>
         <p></p>
         <button class="button">Stäng X</button>
       </div>
@@ -46,14 +55,16 @@
           <div class="leaderboard">
             <h2>Topplista</h2>
             <ul class="leaderboard__entries">
-              <!-- <li class="leaderboard__entries_item" data-id="1">1. <span>12345</span></li>
-              <li class="leaderboard__entries_item" data-id="2">2. <span>12345</span></li>
-              <li class="leaderboard__entries_item" data-id="3">3. <span>12345</span></li> -->
             </ul>
           </div>
           <div class="information hidden">
             <h2>Spel Information</h2>
-            <div class="information__score"></div>
+            <div class="information__score">
+              <p class="information__score_points">Poäng: <span>0</span><img alt="mynt" width="16" height="16" />
+              </p>
+              <p class="information__score_arrows">Pilar: <span>0</span><img alt="pilar" width="16" height="16" />
+              </p>
+            </div>
             <div class="information__helper"></div>
           </div>
         </div>
