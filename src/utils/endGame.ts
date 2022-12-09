@@ -5,10 +5,13 @@ import {
   leaderboard,
   modalElement,
   startGameButton,
+  winModal,
 } from '@/stores/store';
+import coinImage from '@/assets/score-icon.png';
 import Global from '@/stores/variables';
 
-let isModalOpen = false;
+let isLooseModalOpen = false;
+let isWinModalOpen = false;
 
 const resetGame = () => {
   informationElement.classList.toggle('hidden');
@@ -28,78 +31,73 @@ const resetGame = () => {
   Global.previousPosition = 0;
   Global.score = 0;
 
-  if (isModalOpen) {
+  if (isLooseModalOpen) {
+    isLooseModalOpen = false;
     modalElement.classList.toggle('hidden');
+  }
+  if (isWinModalOpen) {
+    isWinModalOpen = false;
+    winModal.classList.toggle('hidden');
   }
 };
 
 export const refreshLeaderboard = () => {
   const listElement = document.querySelector('.leaderboard__entries') as HTMLUListElement;
-  const sortedLeaderboard = leaderboard.sort((a, b) => a.score - b.score);
+  const sortedLeaderboard = leaderboard.length > 0 ? leaderboard.sort((a, b) => a.score - b.score) : leaderboard;
+  const length = sortedLeaderboard.length < 3 ? sortedLeaderboard.length : 3;
 
   if (sortedLeaderboard.length > 0) {
-    for (let i = 0; i < 3; i += 1) {
-      listElement.innerHTML += `<li class="leaderboard__entries_item" data-id="${i + 1}">${i + 1}. <span>${
-        sortedLeaderboard[i].score
-      }</span></li>`;
+    for (let i = 0; i < length; i += 1) {
+      listElement.innerHTML += `
+      <li 
+        class="leaderboard__entries_item" 
+        data-id="${i + 1}"
+      >
+        ${i + 1}. 
+        <span>
+          ${sortedLeaderboard[i].name}
+        </span>
+        <span>
+          ${sortedLeaderboard[i].score}
+          <img src="${coinImage}" width="16" height="16" />
+        </span>
+      </li>`;
     }
   }
-};
-
-const winGame = () => {
-  console.log('Clicked button');
-
-  const name = modalElement.querySelector('input')?.value as string;
-  const { score } = Global;
-
-  console.log(name, score);
-
-  leaderboard.push({ name, score });
-  console.log(leaderboard);
-
-  refreshLeaderboard();
-  resetGame();
 };
 
 const endGame = (type: string) => {
   if (type === 'restart') {
     resetGame();
   } else if (type === 'win') {
-    modalElement.classList.toggle('hidden');
-
-    const h1Element = modalElement.querySelector('h2') as HTMLHeadingElement;
-    const pElement = modalElement.querySelector('p') as HTMLParagraphElement;
-    const buttonElement = modalElement.querySelector('button') as HTMLButtonElement;
-    h1Element.innerText = 'Du vann!';
-    pElement.innerText = `Din poäng blev ${Global.score}`;
-    modalElement.innerHTML += `
-      <label>Skriv ditt namn för topplistan: <input type="text" name="nameinput" id="nameinput" /></label>
-    `;
+    isWinModalOpen = true;
+    winModal.classList.toggle('hidden');
+    const buttonElement = winModal.querySelector('button') as HTMLButtonElement;
 
     buttonElement.addEventListener('click', () => {
-      console.log('clicked button');
-      winGame();
+      const name = winModal.querySelector('input')?.value;
+      if (name && name !== '') {
+        const { score } = Global;
+        leaderboard.push({ name, score });
+        refreshLeaderboard();
+        resetGame();
+      }
     });
-    console.log(buttonElement);
   } else {
     modalElement.classList.toggle('hidden');
 
-    const h1Element = modalElement.querySelector('h2') as HTMLHeadingElement;
     const pElement = modalElement.querySelector('p') as HTMLParagraphElement;
     const buttonElement = modalElement.querySelector('button') as HTMLButtonElement;
-    h1Element.innerText = '';
     pElement.innerText = '';
 
     if (type === 'hole') {
-      h1Element.innerText = 'Du förlorade!';
       pElement.innerText = 'Du ramlade ner i ett hål och förlorade spelet';
-      isModalOpen = true;
+      isLooseModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
     } else {
-      h1Element.innerText = 'Du förlorade!';
       pElement.innerText = 'Du blev uppäten av Wumpus och förlorade spelet';
-      isModalOpen = true;
+      isLooseModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
     }
