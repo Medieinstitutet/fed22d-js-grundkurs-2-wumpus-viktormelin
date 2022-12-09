@@ -2,7 +2,7 @@ import { LeaderboardItem, Locales, Position, Scores } from '@/typings/types';
 
 export const boardElement = document.querySelector('.board') as HTMLElement;
 
-export const modalElement = document.querySelector('.modal') as HTMLElement;
+export const modalElement = document.querySelector('.loose-dialog') as HTMLElement;
 
 export const controlsElement = document.querySelector('.controls') as HTMLElement;
 
@@ -13,6 +13,9 @@ export const informationElement = document.querySelector('.information') as HTML
 export const startGameButton = document.querySelector('#startGameButton') as HTMLButtonElement;
 
 export const showControlsButton = document.querySelector('#showControls') as HTMLButtonElement;
+
+export const winModal = document.querySelector('.win-dialog') as HTMLElement;
+export const winDialogScore = winModal.querySelector('#winDialogScore') as HTMLParagraphElement;
 
 export const keyboardKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'];
 
