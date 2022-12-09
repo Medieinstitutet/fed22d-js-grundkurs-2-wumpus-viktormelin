@@ -35,7 +35,6 @@ const initGameBoard = () => {
     endGame('restart');
   } else {
     Global.isGameStarted = true;
-    Global.currentPosition = Math.floor(Math.random() * gameBoard.length);
 
     refreshLeaderboard();
     generateGameBoard();

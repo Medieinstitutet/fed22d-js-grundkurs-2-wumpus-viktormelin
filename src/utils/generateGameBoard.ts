@@ -19,6 +19,8 @@ const generateGameBoard = () => {
     }
   }
 
+  Global.currentPosition = Math.floor(Math.random() * gameBoard.length);
+
   while (!wumpus) {
     const index = Math.floor(Math.random() * gameBoard.length);
     // const wumpusTile = gameBoard[index];
