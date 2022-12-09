@@ -2,6 +2,7 @@ import floorImage1 from '@/assets/floor.png';
 import floorImage2 from '@/assets/floor_1.png';
 import playerDownImage from '@/assets/player_facing_to_down.png';
 import coinImage from '@/assets/score-icon.png';
+import arrowImage from '@/assets/arrow-icon.png';
 import {
   boardElement,
   controlsElement,
@@ -74,9 +75,17 @@ const initGameBoard = () => {
 
     informationElement.classList.toggle('hidden');
 
-    const scoreElement = informationElement.querySelector('.information__score') as HTMLElement;
-    scoreElement.innerHTML += `<p>Poäng: ${Global.score}</p>`;
-    scoreElement.innerHTML += `<img src="${coinImage}" width="16" height="16" />`;
+    const information = informationElement.querySelector('.information__score') as HTMLElement;
+    const scoreSpanElement = information.querySelector('.information__score_points span') as HTMLSpanElement;
+    const scoreImageElement = information.querySelector('.information__score_points img') as HTMLImageElement;
+    const arrowSpanElement = information.querySelector('.information__score_arrows span') as HTMLSpanElement;
+    const arrowImageElement = information.querySelector('.information__score_arrows img') as HTMLImageElement;
+
+    scoreSpanElement.innerText = String(Global.score);
+    scoreImageElement.src = coinImage;
+
+    arrowSpanElement.innerText = String(Global.arrows);
+    arrowImageElement.src = arrowImage;
 
     startGameButton.innerHTML = 'Avsluta Spelet';
     document.addEventListener('keyup', handleMovement);
