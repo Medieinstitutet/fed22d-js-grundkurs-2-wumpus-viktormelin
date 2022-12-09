@@ -7,12 +7,25 @@
   &__score {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 2rem;
     font-size: 1.2rem;
+    border-bottom: 1px solid #000;
+
+    &_points,
+    &_arrows {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      span {
+        font-weight: bold;
+      }
+    }
   }
 
   &__helper {
     height: 10rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-style: italic;
   }
 }
