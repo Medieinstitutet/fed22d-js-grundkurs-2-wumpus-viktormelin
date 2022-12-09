@@ -72,6 +72,8 @@ const shootArrow = (direction: string) => {
       break;
   }
 
+  Global.isArrowMode = false;
+
   for (const tile of coordsToFind) {
     if (tile?.danger === 'wumpus') {
       endGame('win');
