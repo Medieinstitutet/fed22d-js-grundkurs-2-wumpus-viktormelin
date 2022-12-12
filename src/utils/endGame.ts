@@ -4,6 +4,7 @@ import {
   images,
   informationElement,
   leaderboard,
+  locales,
   modalElement,
   startGameButton,
   winModal,
@@ -16,12 +17,12 @@ let isWinModalOpen = false;
 
 const resetGame = () => {
   informationElement.classList.toggle('hidden');
-  startGameButton.innerHTML = 'Starta Spelet';
+  startGameButton.innerHTML = locales.info.startGame;
 
   // Remove visual elements from gameboard
   boardElement.innerHTML = '';
-  const scoreElement = informationElement.querySelector('.information__score') as HTMLElement;
-  scoreElement.innerHTML = '';
+  // const scoreElement = informationElement.querySelector('.information__score') as HTMLElement;
+  // scoreElement.innerHTML = '';
 
   // Clear gameBoard array
   gameBoard.splice(0, gameBoard.length);
@@ -92,12 +93,12 @@ const endGame = (type: string) => {
     pElement.innerText = '';
 
     if (type === 'hole') {
-      pElement.innerText = 'Du ramlade ner i ett hål och förlorade spelet';
+      pElement.innerText = locales.info.failHole;
       isLooseModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
     } else {
-      pElement.innerText = 'Du blev uppäten av Wumpus och förlorade spelet';
+      pElement.innerText = locales.info.failWumpus;
       isLooseModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
