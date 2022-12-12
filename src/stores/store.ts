@@ -9,6 +9,7 @@ export const controlsElement = document.querySelector('.controls') as HTMLElemen
 export const leaderboardElement = document.querySelector('.leaderboard') as HTMLElement;
 
 export const informationElement = document.querySelector('.information') as HTMLElement;
+export const informationHelperElement = informationElement.querySelector('.information__helper') as HTMLElement;
 
 export const startGameButton = document.querySelector('#startGameButton') as HTMLButtonElement;
 
@@ -22,9 +23,16 @@ export const keyboardKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 
 export const gameBoard: Position[] = [];
 
 export const locales: Locales = {
-  bat: 'Du hör nånting fladdra',
-  hole: 'Du känner ett vinddrag',
-  wumpus: 'Du känner en konstig lukt',
+  dangers: {
+    bat: 'Du hör nånting fladdra',
+    hole: 'Du känner ett vinddrag',
+    wumpus: 'Du känner en konstig lukt',
+  },
+  info: {
+    startGame: 'Starta Spelet',
+    failHole: 'Du ramlade ner i ett hål och förlorade spelet',
+    failWumpus: 'Du blev uppäten av Wumpus och förlorade spelet',
+  },
 };
 
 export const scores: Scores = {
