@@ -1,6 +1,6 @@
-import floorImage1 from '@/assets/floor.png';
-import playerDownImage from '@/assets/player_facing_to_down.png';
-import { boardElement, gameBoard, scores } from '@/stores/store';
+// import floorImage1 from '@/assets/floor.png';
+// import playerDownImage from '@/assets/player_facing_to_down.png';
+import { boardElement, gameBoard, images, scores } from '@/stores/store';
 import Global from '@/stores/variables';
 import CheckSurroundings from '@/utils/checkSurroundings';
 import endGame from '@/utils/endGame';
@@ -36,8 +36,8 @@ const steppedOnBat = () => {
       const tileImageElement = currentPositionElement.querySelector('.tileimg') as HTMLImageElement;
       const playerImageElement = currentPositionElement.querySelector('.playerimg') as HTMLImageElement;
 
-      playerImageElement.src = playerDownImage;
-      tileImageElement.src = floorImage1;
+      playerImageElement.src = images.playerDown;
+      tileImageElement.src = images.floor1;
 
       CheckSurroundings();
       updateScore(scores.bat);

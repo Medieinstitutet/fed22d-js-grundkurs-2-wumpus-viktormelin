@@ -1,13 +1,14 @@
 import {
   boardElement,
   gameBoard,
+  images,
   informationElement,
   leaderboard,
   modalElement,
   startGameButton,
   winModal,
 } from '@/stores/store';
-import coinImage from '@/assets/score-icon.png';
+// import coinImage from '@/assets/score-icon.png';
 import Global from '@/stores/variables';
 
 let isLooseModalOpen = false;
@@ -59,7 +60,7 @@ export const refreshLeaderboard = () => {
         </span>
         <span>
           ${sortedLeaderboard[i].score}
-          <img src="${coinImage}" width="16" height="16" />
+          <img src="${images.coin}" width="16" height="16" />
         </span>
       </li>`;
     }

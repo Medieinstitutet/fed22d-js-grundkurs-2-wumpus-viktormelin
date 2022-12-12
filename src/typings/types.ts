@@ -15,6 +15,10 @@ export interface Locales {
   [key: string]: string;
 }
 
+export interface Images {
+  [key: string]: string;
+}
+
 export interface Scores {
   step: number;
   bat: number;

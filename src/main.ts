@@ -1,12 +1,13 @@
-import floorImage1 from '@/assets/floor.png';
-import floorImage2 from '@/assets/floor_1.png';
-import playerDownImage from '@/assets/player_facing_to_down.png';
-import coinImage from '@/assets/score-icon.png';
-import arrowImage from '@/assets/arrow-icon.png';
+// import floorImage1 from '@/assets/floor.png';
+// import floorImage2 from '@/assets/floor_1.png';
+// import playerDownImage from '@/assets/player_facing_to_down.png';
+// import coinImage from '@/assets/score-icon.png';
+// import arrowImage from '@/assets/arrow-icon.png';
 import {
   boardElement,
   controlsElement,
   gameBoard,
+  images,
   informationElement,
   showControlsButton,
   startGameButton,
@@ -47,7 +48,7 @@ const initGameBoard = () => {
         /* HTML */
         `<div data-tile="${tile.id}" class="board__tile">
           ${Global.isDebug ? `<p style="position: absolute; z-index: 100;">${tile.id}</p>` : ''}
-          <img src="${floorImage2}" class="tileimg" width="64" height="64" />
+          <img src="${images.floor2}" class="tileimg" width="64" height="64" />
           <img
             src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
             class="playerimg"
@@ -69,8 +70,8 @@ const initGameBoard = () => {
     const tileImageElement = currentPositionElement.querySelector('.tileimg') as HTMLImageElement;
     const playerImageElement = currentPositionElement.querySelector('.playerimg') as HTMLImageElement;
 
-    tileImageElement.src = floorImage1;
-    playerImageElement.src = playerDownImage;
+    tileImageElement.src = images.floor1;
+    playerImageElement.src = images.playerDown;
 
     informationElement.classList.toggle('hidden');
 
@@ -81,10 +82,10 @@ const initGameBoard = () => {
     const arrowImageElement = information.querySelector('.information__score_arrows img') as HTMLImageElement;
 
     scoreSpanElement.innerText = String(Global.score);
-    scoreImageElement.src = coinImage;
+    scoreImageElement.src = images.coin;
 
     arrowSpanElement.innerText = String(Global.arrows);
-    arrowImageElement.src = arrowImage;
+    arrowImageElement.src = images.arrow;
 
     startGameButton.innerHTML = 'Avsluta Spelet';
     document.addEventListener('keyup', handleMovement);

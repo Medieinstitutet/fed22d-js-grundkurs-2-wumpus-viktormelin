@@ -1,12 +1,12 @@
-import batImage from '@/assets/bat.png';
-import floorImage1 from '@/assets/floor.png';
-import holeImage from '@/assets/hole.png';
-import playerDownImage from '@/assets/player_facing_to_down.png';
-import playerLeftImage from '@/assets/player_facing_to_left.png';
-import playerRightImage from '@/assets/player_facing_to_right.png';
-import playerUpImage from '@/assets/player_facing_to_up.png';
-import wumpusImage from '@/assets/wumpus.png';
-import { boardElement, gameBoard, scores } from '@/stores/store';
+// import batImage from '@/assets/bat.png';
+// import floorImage1 from '@/assets/floor.png';
+// import holeImage from '@/assets/hole.png';
+// import playerDownImage from '@/assets/player_facing_to_down.png';
+// import playerLeftImage from '@/assets/player_facing_to_left.png';
+// import playerRightImage from '@/assets/player_facing_to_right.png';
+// import playerUpImage from '@/assets/player_facing_to_up.png';
+// import wumpusImage from '@/assets/wumpus.png';
+import { boardElement, gameBoard, images, scores } from '@/stores/store';
 import Global from '@/stores/variables';
 import updateScore from '@/utils/updateScore';
 
@@ -31,16 +31,16 @@ const updatePlayerPosition = (direction: string) => {
 
   switch (direction) {
     case 'up':
-      playerImageElement.src = playerUpImage;
+      playerImageElement.src = images.playerUp;
       break;
     case 'down':
-      playerImageElement.src = playerDownImage;
+      playerImageElement.src = images.playerDown;
       break;
     case 'left':
-      playerImageElement.src = playerLeftImage;
+      playerImageElement.src = images.playerLeft;
       break;
     case 'right':
-      playerImageElement.src = playerRightImage;
+      playerImageElement.src = images.playerRight;
       break;
 
     default:
@@ -48,16 +48,16 @@ const updatePlayerPosition = (direction: string) => {
   }
 
   if (gameBoard[Global.currentPosition].danger === 'hole') {
-    tileImageElement.src = holeImage;
+    tileImageElement.src = images.hole;
     dangers.steppedInHole();
   } else {
-    tileImageElement.src = floorImage1;
+    tileImageElement.src = images.floor1;
 
     if (gameBoard[Global.currentPosition].danger === 'bat') {
-      dangerImageElement.src = batImage;
+      dangerImageElement.src = images.bat;
       dangers.steppedOnBat();
     } else if (gameBoard[Global.currentPosition].danger === 'wumpus') {
-      dangerImageElement.src = wumpusImage;
+      dangerImageElement.src = images.wumpus;
       dangers.steppedOnWumpus();
     }
   }
