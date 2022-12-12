@@ -11,12 +11,14 @@ export interface GlobalVariables {
   score: number;
 }
 
-export interface Locales {
+export interface Images {
   [key: string]: string;
 }
 
-export interface Images {
-  [key: string]: string;
+export interface Locales {
+  [key: string]: {
+    [key: string]: string;
+  };
 }
 
 export interface Scores {
