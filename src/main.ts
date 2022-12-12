@@ -17,7 +17,7 @@ import handleMovement from '@/utils/handleMovement';
 import generateGameBoard from '@/utils/generateGameBoard';
 import '@/style/style.scss';
 import checkSurroundings from '@/utils/checkSurroundings';
-import endGame, { refreshLeaderboard } from '@/utils/endGame';
+import endGame from '@/utils/endGame';
 
 let isControlsShowing = false;
 
@@ -37,7 +37,6 @@ const initGameBoard = () => {
   } else {
     Global.isGameStarted = true;
 
-    refreshLeaderboard();
     generateGameBoard();
     checkSurroundings();
 
