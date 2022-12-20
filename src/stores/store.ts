@@ -32,6 +32,7 @@ export const locales: Locales = {
     startGame: 'Starta Spelet',
     failHole: 'Du ramlade ner i ett hål och förlorade spelet',
     failWumpus: 'Du blev uppäten av Wumpus och förlorade spelet',
+    failArrows: 'Du fick slut på pilar och kan inte längre vinna spelet',
   },
 };
 
