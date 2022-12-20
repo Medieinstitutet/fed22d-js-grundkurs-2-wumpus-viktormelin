@@ -4,7 +4,7 @@ import updatePlayerPosition from '@/utils/updatePlayerPosition';
 import shootArrow from './shootArrow';
 
 const activateArrowMode = () => {
-  if (!Global.isArrowMode) {
+  if (!Global.isArrowMode && Global.arrows > 0) {
     Global.isArrowMode = true;
   }
 };

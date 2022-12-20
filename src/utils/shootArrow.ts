@@ -1,4 +1,4 @@
-import { gameBoard } from '@/stores/store';
+import { gameBoard, informationElement } from '@/stores/store';
 import Global from '@/stores/variables';
 import endGame from './endGame';
 
@@ -74,10 +74,20 @@ const shootArrow = (direction: string) => {
 
   Global.isArrowMode = false;
 
+  const information = informationElement.querySelector('.information__score') as HTMLElement;
+  const arrowSpanElement = information.querySelector('.information__score_arrows span') as HTMLSpanElement;
+  Global.arrows -= 1;
+  arrowSpanElement.innerText = String(Global.arrows);
+
   for (const tile of coordsToFind) {
     if (tile?.danger === 'wumpus') {
       endGame('win');
+      return;
     }
+  }
+
+  if (Global.arrows <= 0) {
+    endGame('noArrows');
   }
 };
 
