@@ -1,22 +1,80 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- TODO: glöm ej att byta språk här -->
+<html lang="en">
+
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/ico" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projekt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+    <title>Hunt the Wumpus, sort of...</title>
   </head>
+
   <body>
     <main>
-      <div class="app" id="app"></div> <!-- TODO: går bra att radera -->
-      <!-- TODO: skriv din kod här, innan script-taggen -->
+      <div class="win-dialog modal hidden">
+        <h2>Du vann!</h2>
+        <p id="winDialogScore"><span>Din poäng blev </span><span></span><img
+            src="https://imagedelivery.net/3ecvmLCFkS-FijMWb0qFvQ/68a479b0-388d-42df-c370-31cbb4c5fe00/w=16" alt="mynt"
+            width="16" height="16" />
+        </p>
+        <label>
+          Skriv ditt namn för topplistan:
+          <input type="text" name="nameinput" id="nameinput" />
+        </label>
+        <button class="button">Stäng</button>
+      </div>
+      <div class="loose-dialog modal hidden">
+        <h2>Du förlorade!</h2>
+        <p></p>
+        <button class="button">Stäng</button>
+      </div>
+      <div class="controls hidden">
+        <h2>Kontroller</h2>
+        <ul>
+          <li>
+            <img src="https://imagedelivery.net/3ecvmLCFkS-FijMWb0qFvQ/b2b12b2b-caad-49ce-d31c-c9343d352600/w=32"
+              alt="Entertangent">
+            <p>Aktivera pil-läge</p>
+          </li>
+          <li>
+            <img src="https://imagedelivery.net/3ecvmLCFkS-FijMWb0qFvQ/8160b015-7f88-4478-45b5-d18137136b00/w=64"
+              alt="Piltangenter">
+            <p>Gå runt</p>
+          </li>
+        </ul>
+        <button class="button">Stäng X</button>
+      </div>
+      <div class="main">
+        <div class="main__header">
+          <h1>Hunt the Wumpus</h1>
+          <div class="buttons">
+            <button class="button" id="startGameButton">Starta Spelet</button>
+            <button class="button" id="showControls">Kontroller</button>
+          </div>
+        </div>
+        <div class="main__information">
+          <div class="leaderboard">
+            <h2>Topplista</h2>
+            <ul class="leaderboard__entries">
+            </ul>
+          </div>
+          <div class="information hidden">
+            <h2>Spel Information</h2>
+            <div class="information__score">
+              <p class="information__score_points">Poäng: <span>0</span><img alt="mynt" width="16" height="16" />
+              </p>
+              <p class="information__score_arrows">Pilar: <span>0</span><img alt="pilar" width="16" height="16" />
+              </p>
+            </div>
+            <div class="information__helper"></div>
+          </div>
+        </div>
+      </div>
+      <div class="board"></div>
     </main>
-
-    <!-- TODO
-    - Validera HTML (kopiera den renderade HTML-koden): https://validator.w3.org/#validate_by_input
-    - Kontrollera tillgänglighet: https://www.a11yproject.com/checklist/ & Chrome Lighthouse/Firefox Accessibility Tools
-    - Validera genererade CSS: https://jigsaw.w3.org/css-validator/#validate_by_input
-    -->
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="src/main.ts"></script>
   </body>
+
 </html>

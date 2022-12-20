@@ -1,0 +1,46 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem 0.5rem #0000001a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem 0.5rem #0000001a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}

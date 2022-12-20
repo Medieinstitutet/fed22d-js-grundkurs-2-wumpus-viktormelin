@@ -10,11 +10,18 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "eslint": "^8.0.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "postcss-scss": "^4.0.6",
@@ -25,7 +32,12 @@
     "stylelint-config-standard": "^29.0.0",
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-scss": "^4.3.0",
-    "typescript": "*",
-    "vite": "^3.2.3"
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3",
+    "vite-tsconfig-paths": "^3.6.0"
+  },
+  "dependencies": {
+    "modern-normalize": "^1.1.0",
+    "path": "^0.12.7"
   }
 }

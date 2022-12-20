@@ -1,0 +1,70 @@
+@use '../base/functions' as fn;
+
+body {
+  background-image: url('https://imagedelivery.net/3ecvmLCFkS-FijMWb0qFvQ/2d23f28b-16ef-49a8-8569-278eaa598100/public');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  border: unset;
+  background: unset;
+}
+
+.button {
+  background-color: fn.getcolor(grey, '400');
+  border-radius: 0.25rem;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    box-shadow: #0000003d 0 3px 8px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.debug::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #ff000080 !important;
+  z-index: 999;
+}
+
+.main {
+  height: 100%;
+  width: 50vw;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__information {
+    display: flex;
+  }
+}

@@ -1,0 +1,7 @@
+@use '../abstracts/colors' as *;
+// @use 'sass:map';
+
+@function getcolor($base, $shade: '300') {
+  $color: map-get(map-get($colors, $base), $shade);
+  @return $color;
+}
