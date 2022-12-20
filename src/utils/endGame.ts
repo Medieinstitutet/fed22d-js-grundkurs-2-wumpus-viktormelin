@@ -97,8 +97,13 @@ const endGame = (type: string) => {
       isLooseModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
-    } else {
+    } else if (type === 'wumpus') {
       pElement.innerText = locales.info.failWumpus;
+      isLooseModalOpen = true;
+
+      buttonElement.addEventListener('click', resetGame);
+    } else if (type === 'noArrows') {
+      pElement.innerText = locales.info.failArrows;
       isLooseModalOpen = true;
 
       buttonElement.addEventListener('click', resetGame);
